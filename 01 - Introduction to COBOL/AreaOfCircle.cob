@@ -18,11 +18,15 @@
       *Ask for radius
            DISPLAY "Enter radius: ".
            ACCEPT RAD.
+           PERFORM COMPUTE-AREA.
+           STOP RUN.
+
       *Compute for the area of the Circle
+       COMPUTE-AREA.
            COMPUTE C-AREA = MY-PI * (RAD ** 2).
            MOVE C-AREA TO S-AREA.
            DISPLAY "The area of the "
       *hyphen (-) is required
       -    "circle is " 
            FUNCTION TRIM(S-AREA LEADING) ".".
-           STOP RUN.
+           
