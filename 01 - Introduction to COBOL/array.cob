@@ -7,11 +7,10 @@
        ENVIRONMENT DIVISION.
 
        DATA DIVISION.
-           WORKING-STORAGE SECTION.
-           01 ARR-REC.
-               02 MY-ARR PIC A(10) OCCURS 10 TIMES.
-           
-           77 IDX PIC 99 VALUE 1.
+       WORKING-STORAGE SECTION.
+       01 ARR-REC.
+               02 MY-ARR PIC A(10) OCCURS 10 TIMES.    
+       77 IDX PIC 99 VALUE 1.
 
        PROCEDURE DIVISION.
       *COBOL indexing starts with 1
