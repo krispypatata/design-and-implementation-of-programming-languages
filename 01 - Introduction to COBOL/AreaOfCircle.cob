@@ -13,12 +13,25 @@
            77 RAD PIC 9(2).
            77 C-AREA PIC 9(5).9(2).
            77 S-AREA PIC Z(4)9.9(2).
+           77 EXITED PIC 9 VALUE 0.
 
        PROCEDURE DIVISION.
+      *While loop
+           PERFORM UNTIL EXITED = 1
       *Ask for radius
-           DISPLAY "Enter radius: ".
-           ACCEPT RAD.
-           PERFORM COMPUTE-AREA.
+               DISPLAY "Enter radius (0 to exit): " WITH NO ADVANCING
+               ACCEPT RAD
+
+               IF RAD = 0
+                   MOVE 1 TO EXITED
+               ELSE
+                   PERFORM COMPUTE-AREA
+               END-IF
+      
+      *Blank line after each iteration
+               DISPLAY " "
+
+           END-PERFORM.
            STOP RUN.
 
       *Compute for the area of the Circle
