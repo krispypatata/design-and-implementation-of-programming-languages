@@ -2,7 +2,7 @@
       *AUTHOR: Keith Ginoel Gabinete
       *DATE: August 28, 2024
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. SAMPLE.
+       PROGRAM-ID. sample.
 
        ENVIRONMENT DIVISION.
 
@@ -36,3 +36,8 @@
            ELSE
                MOVE 1 TO EXITED
            END-IF.
+
+      * A for alphabet
+      * 9 for digit
+      * X for any character
+      * VALUE => assign a value to a given variable
