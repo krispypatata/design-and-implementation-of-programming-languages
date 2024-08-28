@@ -1,3 +1,6 @@
+      *DESCRITPION: A program that computes the sum of two numbers.
+      *AUTHOR: Keith Ginoel Gabinete
+      *DATE: August 28, 2024
        IDENTIFICATION DIVISION.
        PROGRAM-ID. SAMPLE.
 
