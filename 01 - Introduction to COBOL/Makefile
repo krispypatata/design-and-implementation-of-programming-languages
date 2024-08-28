@@ -1,3 +1,5 @@
+compile:
+	cobc -x gabinete_ex1.cob
 
-hello:
-	cobc -x hello.cob
+run:
+	./gabinete_ex1
