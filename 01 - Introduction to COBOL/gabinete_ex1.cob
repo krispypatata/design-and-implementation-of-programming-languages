@@ -1,4 +1,6 @@
-      *DESCRIPTION: This program computes for the factorial of a number n.
+      *DESCRIPTION: This program computes the factorial of the 
+      *             largest number from an array of 5 single-digit
+      *             positive integers.
       *AUTHOR: Keith Ginoel S. Gabinete
       *DATE: August 28, 2024 
        IDENTIFICATION DIVISION.
@@ -22,7 +24,7 @@
        77 choice PIC 9(1) VALUE 1.
        77 exited PIC 9(1) VALUE 0.
 
-       77 userInput PIC X(2).
+       77 userInput PIC 9(2).
        77 isValid PIC 9(1) VALUE 0.
        77 validInput PIC 9(1).
 
@@ -32,6 +34,7 @@
       *The largest possible factorial of a 1-digit number is 362880 (9!)
       *which is a 6-digit number
        77 nFactorial PIC 9(6).
+       77 nFactorialFormatted PIC Z(5)9(1).
        
       *Start of the code
       *NOTE: COBOL indexing starts with 1
@@ -52,16 +55,22 @@
            ACCEPT choice.
 
            IF choice = 1
-               DISPLAY "OKAY"
+               PERFORM fillNumArray
            ELSE
                IF choice = 2
                    PERFORM printNumArray
                ELSE
                    IF choice = 3
-                       DISPLAY "ALRIGHT"
+                       PERFORM getFactorialOfLargestNum
                    ELSE
-                       DISPLAY "EXIT"
-                       MOVE 1 TO exited
+                       IF choice = 4
+                           DISPLAY " "
+                           DISPLAY "EXITED!"
+                           MOVE 1 TO exited
+                       ELSE
+                           DISPLAY " "
+                           DISPLAY "Invalid Input!"
+                       END-IF
                    END-IF
                END-IF
            END-IF.
@@ -79,9 +88,26 @@
 
            MOVE 1 TO iterator.
            PERFORM UNTIL iterator > 5
-               DISPLAY "Enter a positive integer (1-9): " 
-               WITH NO ADVANCING
-               
+      * Check if the input entered by the user is a valid single digit input
+               MOVE 0 to isValid
+               PERFORM UNTIL isValid = 1
+                   DISPLAY "Enter a positive integer (1-9): " 
+                   WITH NO ADVANCING
+                   ACCEPT userInput
+                   
+                   IF userInput IS NUMERIC
+                       IF userInput >= 1 AND userInput <= 9
+                           MOVE userInput TO validInput
+                           MOVE validInput TO numArr(iterator)
+                           MOVE 1 TO isValid
+                       ELSE
+                           DISPLAY "INVALID INPUT"
+                           DISPLAY "Must be within the given range."
+                   ELSE
+                       DISPLAY "INVALID INPUT!"
+                       DISPLAY "Must be a positive integer input only."
+                   END-IF
+               END-PERFORM
 
                COMPUTE iterator = iterator + 1
            END-PERFORM.
@@ -121,9 +147,12 @@
            PERFORM getLargestNum.
 
            MOVE 1 TO nFactorial.
-           PERFORM UNTIL largestNum > 0
+           PERFORM UNTIL largestNum = 0
                COMPUTE nFactorial = nFactorial * largestNum
                COMPUTE largestNum = largestNum - 1
            END-PERFORM.
            
-           DISPLAY nFactorial.
+           MOVE nFactorial TO nFactorialFormatted
+           DISPLAY " "
+           DISPLAY "FACTORIAL OF LARGEST NUMBER"
+           DISPLAY FUNCTION TRIM(nFactorialFormatted LEADING).
