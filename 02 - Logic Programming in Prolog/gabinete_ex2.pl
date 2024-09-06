@@ -1,5 +1,5 @@
 /*
-DESCRIPTION: This program implements the instructions provided in the lab exercise 3 handout.
+DESCRIPTION: This program implements the instructions provided in the week 3 exercise handout.
 AUTHOR: Gabinete, Keith Ginoel S.
 DATE: September 06, 2024
 */
