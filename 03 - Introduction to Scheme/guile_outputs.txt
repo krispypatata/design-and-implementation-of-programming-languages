@@ -1,0 +1,90 @@
+Enter `,help' for help.
+scheme@(guile-user)> (load "try.scm")
+;;; note: auto-compilation is enabled, set GUILE_AUTO_COMPILE=0
+;;;       or pass the --no-auto-compile argument to disable.
+;;; compiling /home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm
+;;; compiled /home/acer/.cache/guile/ccache/2.2-LE-8-3.A/home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm.go
+scheme@(guile-user)> (load "try.scm")    
+;;; note: source file /home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm
+;;;       newer than compiled /home/acer/.cache/guile/ccache/2.2-LE-8-3.A/home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm.go
+;;; compiling /home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm
+;;; compiled /home/acer/.cache/guile/ccache/2.2-LE-8-3.A/home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/try.scm.go
+$1 = 6
+scheme@(guile-user)> (load "hello.scm")
+;;; compiling /home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/hello.scm
+;;; compiled /home/acer/.cache/guile/ccache/2.2-LE-8-3.A/home/acer/Downloads/design-and-implementation-of-programming-languages/03 - Introduction to Scheme/hello.scm.go
+Hello, world!
+scheme@(guile-user)> (+ 1 2 3 4 5 6)
+$2 = 21
+scheme@(guile-user)> (* $2 6)
+$3 = 126
+scheme@(guile-user)> (define myvar 90)
+scheme@(guile-user)> myvar
+$4 = 90
+scheme@(guile-user)> (/ $4 $1)
+$5 = 15
+scheme@(guile-user)> (= 8 9)
+$6 = #f
+scheme@(guile-user)> (not (= 5 5))
+$7 = #f
+scheme@(guile-user)> (+ 2/3 3/4)
+$8 = 17/12
+scheme@(guile-user)> (+ 3+4i 6+2i)
+$9 = 9.0+6.0i
+scheme@(guile-user)> ( expt 2 3)
+$10 = 8
+scheme@(guile-user)> ( max 1 2 3 2 1)
+$11 = 3
+scheme@(guile-user)> ( min 3 2 1 2 3)
+$12 = 1
+scheme@(guile-user)> ( abs -6)
+$13 = 6
+scheme@(guile-user)> ( modulo 5 3)
+$14 = 2
+scheme@(guile-user) [1]> ( char-downcase #\A)      
+$15 = #\a
+scheme@(guile-user) [1]> ( char-upcase #\a)   
+$16 = #\A
+scheme@(guile-user) [1]> (define s1 "bye")
+scheme@(guile-user) [1]> s1
+$17 = "bye"
+scheme@(guile-user) [3]> (string-ref $17 2)
+$18 = #\e
+scheme@(guile-user)> (define hello "text message")
+scheme@(guile-user)> hello
+$27 = "text message"
+scheme@(guile-user)> (define sym2 'hello)
+scheme@(guile-user)> 'hello
+$28 = hello
+scheme@(guile-user)> hello
+$29 = "text message"
+scheme@(guile-user)> 
+scheme@(guile-user)> (car mylist)
+$6 = 1
+scheme@(guile-user)> (cdr mylist)
+$7 = (2 3 4)
+scheme@(guile-user)> (car (cdr mylist))
+$8 = 2
+scheme@(guile-user)> '(5 6 7 8)
+$9 = (5 6 7 8)
+scheme@(guile-user) [1]> mylist2
+$11 = (5 6 7 8)
+scheme@(guile-user) [1]> mylist
+$12 = (1 2 3 4)
+scheme@(guile-user) [1]> (list? mylist)
+$13 = #t
+scheme@(guile-user) [1]> (define count 5)
+scheme@(guile-user) [1]> (if (> count )) (set! count (- count 1)))
+While compiling expression:
+Syntax error:
+unknown file:15:0: source expression failed to match any pattern in form (if (> count))
+While reading expression:
+In procedure read_inner_expression: #<unknown port>:15:42: unexpected ")"
+scheme@(guile-user) [1]> (if (> count 0) (set! count (- count 1)))
+scheme@(guile-user) [1]> count
+$14 = 3
+scheme@(guile-user) [1]> count
+$15 = 3
+scheme@(guile-user) [1]> (if (> count 0) (set! count (- count 1)))
+scheme@(guile-user) [1]> count
+$16 = 2
