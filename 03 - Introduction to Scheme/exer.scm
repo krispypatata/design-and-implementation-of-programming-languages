@@ -1,3 +1,6 @@
+; DESCRIPTION: A collection of scheme commands for lab exercise for week 04.
+; AUTHOR: Keith Ginoel S. Gabinete
+; CREATED: September 11, 2024
 
 ; 1 (a)
 ; infix: 1 + (2 - 3) * 4 / 5 + (6 -7)
