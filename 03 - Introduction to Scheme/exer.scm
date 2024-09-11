@@ -47,5 +47,5 @@
 (car(car (cdr (car (cdr (car (cdr (car (cdr b)))))))))
 
 ; 3 (c)
-(define c (list (list 141 123 128 (list 23 (cons (list ) 12) 24) 165) 22 21 ))
+(define c (list (list 141 123 128 (list 23 (cons (list ) 12) 124) 165) 22 21 ))
 (car (cdr (cdr (car (cdr (cdr (cdr (car c))))))))
