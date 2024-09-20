@@ -7,31 +7,88 @@
 ; AUTHOR: Keith Ginoel S. Gabinete
 ; CREATED: September 20, 2024
 
-; (computeDistance (list (cons -1 2) (cons 0 2) (cons 2 10)))
+; ═════════════════════════════════════════════════════════════════════════════════════
+; PART 1: Compute Distance
 (define (computeDistanceTR pointsList totalDistance)
-    (if (null? (cdr pointsList))  ; check if the next node/element is null
-        totalDistance   ; base case
+    (if (null? (cdr pointsList))  ; Check if the next node/element is null
+        totalDistance   ; Base case
         
-        (computeDistanceTR      ; recursive case
-            (cdr pointsList)    ; updated list
-            (+                  ; updated accumulator (totalDistance + (distance between the currently traversed point/node and the next point/node in the list))
+        (computeDistanceTR      ; Recursive case
+            (cdr pointsList)    ; Updated list
+            (+                  ; Updated accumulator (totalDistance + (distance between the currently traversed point/node and the next point/node in the list))
                 totalDistance 
-                ; distance formula = sqrt ( (x1 - x2) ^ 2 + (y1 - y2) ^ 2 )
+                ; Distance formula = sqrt ( (x1 - x2) ^ 2 + (y1 - y2) ^ 2 )
                 (sqrt 
                     (+ 
                         (expt (- (caar pointsList) (caadr pointsList)) 2) 
                         (expt (- (cdar pointsList) (cdadr pointsList)) 2) 
-                    ) 
-                ) 
-            ) 
-        )
-    )
+                    ) ; End - addition of squares
+                ) ; End - sqrt
+            ) ; End - addition of distances
+        ) ; End - computeDistanceTR
+    ) ; End - if
 )
 
-; helper function
+; -------------------------------------------------------------------------------------
+; Helper function
 (define (computeDistance pointsList)
     (computeDistanceTR pointsList 0)
 )
 
+; ═════════════════════════════════════════════════════════════════════════════════════
+; PART 2: Sort Divisible by 5
 
+; =====================================================================================
+; The list parameter here must be already sorted in DESCENDING order.
+(define (insertInSortedListTR elementToInsert sortedListLeft sortedListRight )
+    (if (or (null? sortedListLeft) (> elementToInsert (car sortedListLeft)) )
+        (append sortedListRight (cons elementToInsert sortedListLeft))  ; Base case
+        ; Recursive case
+        (insertInSortedListTR elementToInsert (cdr sortedListLeft) (append sortedListRight (list (car sortedListLeft))))
+    )
+)
+
+; -------------------------------------------------------------------------------------
+; Helper function
+(define (insertInSortedList elementToInsert sortedList)
+    (insertInSortedListTR elementToInsert sortedList (list ))
+)
+
+; =====================================================================================
+; Sort a list in DESCENDING order with the insertInSortedList function
+(define (sortListTR numList sortedNumList)
+    (if (null? numList)
+        sortedNumList
+        (sortListTR (cdr numList) (insertInSortedList (car numList) sortedNumList))
+    )
+)
+
+; -------------------------------------------------------------------------------------
+; Helper function
+(define (sortList numList)
+    (sortListTR numList (list ))
+)
+
+; =====================================================================================
+(define (sortDivisibleTR numList sortedNumList)
+    (if (null? numList) ; Check if current node/element is null
+        ; Base case
+        ; Sort the first and second sublist then combine them
+        (append (sortList (car sortedNumList)) (sortList (cdr sortedNumList))) 
+        ; Recursive case
+        (sortDivisibleTR (cdr numList)
+            (if (= (modulo (car numList) 5) 0)  ; Check if the current node/element is divisible by 5
+                (cons (cons (car numList) (car sortedNumList)) (cdr sortedNumList)) ; add node/element to the first sublist
+                (cons (car sortedNumList) (cons (car numList) (cdr sortedNumList))) ; add node/element to the second sublist
+            )
+        )
+    )  
+)
+
+; -------------------------------------------------------------------------------------
+; Helper function
+(define (sortDivisible numList)
+    (sortDivisibleTR numList (cons (list ) (list )))
+)
+; ═════════════════════════════════════════════════════════════════════════════════════
 
