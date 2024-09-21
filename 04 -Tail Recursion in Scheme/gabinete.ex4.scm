@@ -42,8 +42,14 @@
 ; The list parameter here must be already sorted in DESCENDING order.
 (define (insertInSortedListTR elementToInsert sortedListLeft sortedListRight )
     (if (or (null? sortedListLeft) (> elementToInsert (car sortedListLeft)) )
-        (append sortedListRight (cons elementToInsert sortedListLeft))  ; Base case
+        ; Base case
+        ; Combine the two sublists
+        (append sortedListRight (cons elementToInsert sortedListLeft))  
+
         ; Recursive case
+        ; first param: the element to insert
+        ; second param: updated sortedListLeft without the currently traversed node/element
+        ; third param: sortedListRight with the currently traversed element added to it (since it will be removed in the next iteration)
         (insertInSortedListTR elementToInsert (cdr sortedListLeft) (append sortedListRight (list (car sortedListLeft))))
     )
 )
@@ -58,8 +64,12 @@
 ; Sort a list in DESCENDING order with the insertInSortedList function
 (define (sortListTR numList sortedNumList)
     (if (null? numList)
-        sortedNumList
-        (sortListTR (cdr numList) (insertInSortedList (car numList) sortedNumList))
+        sortedNumList   ; Base case
+
+        ; Recursive Case
+        ; firs param: updated numList without the currently traversed node/element
+        ; second param: updatedSortedNumList with the current element inserted into it
+        (sortListTR (cdr numList) (insertInSortedList (car numList) sortedNumList)) 
     )
 )
 
@@ -75,7 +85,10 @@
         ; Base case
         ; Sort the first and second sublist then combine them
         (append (sortList (car sortedNumList)) (sortList (cdr sortedNumList))) 
-        ; Recursive case
+
+        ; Recursive case 
+        ; first param: updated numList without the currently traversed node/element
+        ; second param: updated sortedNumList with the current element in it (uses ternary operator to determine which side the current element should be appended to))
         (sortDivisibleTR (cdr numList)
             (if (= (modulo (car numList) 5) 0)  ; Check if the current node/element is divisible by 5
                 (cons (cons (car numList) (car sortedNumList)) (cdr sortedNumList)) ; add node/element to the first sublist
