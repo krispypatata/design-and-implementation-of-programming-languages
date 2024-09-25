@@ -1,0 +1,70 @@
+Eshell V12.2.1  (abort with ^G)
+1> c(sample).
+{ok,sample}
+2> sample:hello().
+Hello World!
+ok
+3> sample:add(1,2).
+3
+4> sample:both(5).
+Hello World!
+10
+5> sample:check(10).
+X is 7!!!
+ok
+6> X.
+* 1:1: variable 'X' is unbound
+7> X = 2.
+2
+8> A = B = X.
+2
+9> A.
+2
+10> B.
+2
+11> b().
+A = 2
+B = 2
+X = 2
+ok
+12> f().
+ok
+13> X.  
+* 1:1: variable 'X' is unbound
+14> A.
+* 1:1: variable 'A' is unbound
+15> 
+19> f(List1)
+19> .
+ok
+20> List1 = [1, 2, 3, 4].
+[1,2,3,4]
+21> [z|List1].
+[z,1,2,3,4]
+22> [List1|z].
+[[1,2,3,4]|z]
+23> 
+23> [H|T] = List1.
+[1,2,3,4]
+24> H.
+1
+25> T.
+[2,3,4]
+26> List2 = [a,b,c,d].
+[a,b,c,d]
+27> List2 -- [b,d].
+[a,c]
+28> List2.
+[a,b,c,d]
+29> List1 ++ List2.
+[1,2,3,4,a,b,c,d]
+30> "abc".
+"abc"
+31> "abc" == [97,98,99].
+true
+32> 1 == 1.
+true
+33> 1 == 1.0.
+true
+34> 1 =:= 1.0.
+false
