@@ -1,0 +1,9 @@
+c(kgsg).
+
+kgsg:reverseList([3,6,9,1,2]).
+kgsg:primeFilter([3, 6, 9, 1, 2]).
+kgsg:primeFilter([10, 6, 9, -3, 8]).
+
+kgsg:listMult([3, 6, 9, 1, 2]).
+kgsg:listMult([3, 6, 9, 1]).
+kgsg:listMult([3]).
