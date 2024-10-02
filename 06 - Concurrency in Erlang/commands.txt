@@ -1,0 +1,129 @@
+
+Eshell V12.2.1  (abort with ^G)
+1> fun() -> 1+1 end.
+#Fun<erl_eval.45.65746770>
+2> self().
+<0.80.0>
+3> spawn(F).
+* 1:7: variable 'F' is unbound
+4> F = fun() -> 1 + 1 end.
+#Fun<erl_eval.45.65746770>
+5> spawn(F).
+<0.86.0>
+6> f(F).
+ok
+7> F = fun() -> 1 + 1 end.
+#Fun<erl_eval.45.65746770>
+8> spawn(F).
+<0.90.0>
+9> self().
+<0.80.0>
+10> self() ! "Hello, world!".
+"Hello, world!"
+11> self() ! {hello, world}.
+{hello,world}
+12> flush().
+Shell got "Hello, world!"
+Shell got {hello,world}
+ok
+13> c(cats).
+cats.erl:2:2: Warning: export_all flag enabled - all functions will be exported
+%    2| -compile (export_all).
+%     |  ^
+
+{ok,cats}
+14> Kitty = spawn(cats, cat, []).
+<0.101.0>
+15> self().
+<0.80.0>
+16> Kitty ! catfood.
+I'm your master. 
+catfood
+17> Kitty ! come_here.
+I'm your master. 
+come_here
+18> 
+18> Kitty ! {Kitty, catfood}.
+{<0.101.0>,catfood}
+19> Kitty ! catfood.         
+catfood
+20> c(cats1).
+cats1.erl:2:2: Warning: export_all flag enabled - all functions will be exported
+%    2| -compile (export_all).
+%     |  ^
+
+{ok,cats1}
+21> f(Kitty).
+ok
+22> Kitty = spawn(cats, cat, []).
+<0.114.0>
+23> Kitty ! catfood.
+I'm your master. 
+catfood
+24> Kitty ! come_here.
+I'm your master. 
+come_here
+25> f(Kitty).
+ok
+26> f(Kitty).
+ok
+27> Kitty = spawn(cats, cat, []).
+<0.120.0>
+28> Kitty ! {self(),come_here}.
+{<0.80.0>,come_here}
+29> flutsh().
+** exception error: undefined shell command flutsh/0
+30> flush().
+ok
+31> Kitty ! {self(),come_here}.
+{<0.123.0>,come_here}
+32> flush().
+Shell got "Shut up, human. ~n"
+ok
+33> Kitty ! {self(),catfood}.  
+{<0.123.0>,catfood}
+34> flush().
+Shell got "Thank you. ~n"
+ok
+35> Kitty ! {self(),hoy}.    
+{<0.123.0>,hoy}
+36> c(cats1). 
+cats1.erl:4:1: Warning: function cat/0 is unused
+%    4| cat() ->
+%     | ^
+
+{ok,cats1}
+37> Kit = spawn(cats, cat, []).  
+<0.136.0>
+38> Kit ! come_here.             
+I'm your master. 
+come_here
+39> 
+
+
+
+
+
+Erlang/OTP 24 [erts-12.2.1] [source] [64-bit] [smp:16:16] [ds:16:16:10] [async-threads:1] [jit]
+
+Eshell V12.2.1  (abort with ^G)
+1> c(catsnc).
+catsnc.erl:3:3: Warning: export_all flag enabled - all functions will be exported
+%    3| - compile ( export_all ) . % tells which functions to compile
+%     |   ^
+
+{ok,catsnc}
+2> Cat = spawn(cats,cat,[]).
+<0.87.0>
+3> Cat ! catfood.
+I'm your master. 
+catfood
+4> Cat = spawn(catsnc,cat,[]).
+** exception error: no match of right hand side value <0.90.0>
+5> f(Cat).
+ok
+6> Cat = spawn(catsnc,cat,[]).
+<0.94.0>
+7> Cat ! catfood.
+ Thank you! 
+catfood
