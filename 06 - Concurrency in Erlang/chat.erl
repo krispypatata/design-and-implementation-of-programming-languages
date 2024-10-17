@@ -36,9 +36,10 @@ wait_for_connection(Server_Name) ->
 			io:format("────────────────────────────────~n"), 
 			io:format("Connection has been established.~n"),
 			io:format("────────────────────────────────~n"),
-			% spawn(chat, handle_server_input, [Server_Name, Client_Listener_PID]),
 			register(server_listener, spawn(chat, handle_server_listening, [Server_Name])),
 			handle_server_input(Server_Name, Client_Listener_PID)
+			% alternative: spawn handle_server_input instead of calling it
+			% spawn(chat, handle_server_input, [Server_Name, Client_Listener_PID]),
 	end.
 
 % ─────────────────────────────────────────────────────────────────────────────────────
@@ -81,13 +82,23 @@ init_chat2(Chat_Node) ->
 	case net_adm:ping(Chat_Node) of
 		% Success
 		pong -> 
-			Client_Name = string:trim(io:get_line("Enter Your Name: ")),
-			Client_Listener_PID = spawn(chat, handle_client_listening, []),
-			{chat_connection, Chat_Node} ! {connection_established, Client_Listener_PID},
-			io:format("────────────────────────────────~n"), 
-			io:format("Connection has been established.~n"),
-			io:format("────────────────────────────────~n"),
-			handle_client_input(Client_Name, Chat_Node);
+			% Check first if Server is already initialized
+			case rpc:call(Chat_Node, erlang, whereis, [chat_connection]) of
+        		undefined ->
+					io:format("────────────────────────────────~n"), 
+					io:format("Cannot establish a connection.~n"),
+					io:format("init_chat() is not yet invoked.~n"),
+					io:format("────────────────────────────────~n"),
+					exit(normal);
+				_ -> 
+					Client_Name = string:trim(io:get_line("Enter Your Name: ")),
+					Client_Listener_PID = spawn(chat, handle_client_listening, []),
+					{chat_connection, Chat_Node} ! {connection_established, Client_Listener_PID},
+					io:format("────────────────────────────────~n"), 
+					io:format("Connection has been established.~n"),
+					io:format("────────────────────────────────~n"),
+					handle_client_input(Client_Name, Chat_Node)
+			end;
 		% Failure
 		pang -> 
 			io:format("──────────────────────────────────────────────────────────~n"), 
