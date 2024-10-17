@@ -18,7 +18,7 @@ client: compile
 client2: compile
 	erl -name $(CLIENT2) -setcookie $(COOKIE) -eval "net_adm:ping('$(SERVER)')." 
 
-compile: gabinete1gabinete2.beam
+compile: gabinete.beam
 
-gabinete1gabinete2.beam: gabinete1gabinete2.erl
-	erlc gabinete1gabinete2.erl
+gabinete.beam: gabinete.erl
+	erlc gabinete.erl

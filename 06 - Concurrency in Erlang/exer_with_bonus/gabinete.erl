@@ -5,14 +5,14 @@
 % invoking the init_chat2 function while specifying the first user's name (passing it as a parameter).
 % The communication process terminates when one of the users sends the string 'bye'.
 % AUTHOR:   Keith Ginoel S. Gabinete
-% CREATED:  October 16, 2024
+% CREATED:  October 18, 2024
 % ═════════════════════════════════════════════════════════════════════════════════════
 
--module(gabinete1gabinete2).
+-module(gabinete).
 -compile([nowarn_export_all,export_all]).
 
 % GLOBAL VARIABLE
--define(MODULE_NAME, gabinete1gabinete2).
+-define(MODULE_NAME, gabinete).
 
 % ═════════════════════════════════════════════════════════════════════════════════════
 % Initialize the chat/communcation process (setting up the server and server prompt)
@@ -25,31 +25,39 @@ init_chat() ->
     end,
 
 	% Ask for the name of the user
-    Server_Name = string:trim(io:get_line("Enter Your Name: ")),
+    Server_Name = "[S] " ++ string:trim(io:get_line("Enter Your Name: ")),
 
+	% Instantiate a listener for the server
 	register(server_listener, spawn(?MODULE_NAME, handle_server_listening, [self(), Server_Name, [{Server_Name, self()}]])),
+	
+	% For handling user inputs from the user (server)
 	handle_server_input(Server_Name, []).
 
 % ─────────────────────────────────────────────────────────────────────────────────────
 % A loop/recursive function for monitoring mails for the server process
 handle_server_listening(Server_Input_Listener_PID, Server_Name, Client_List) ->
     receive
+		% When a client connects to the server
 		{connection_established, Client_Listener_PID, Client_Name} ->
 			Temp_Message = io_lib:format("CONNECTED...~n", []),
 			io:format("~s: CONNECTED...~n", [Client_Name]),
 			broadcast_message(Client_Name, Temp_Message, Client_List),
+
+			% Update the list of clients
 			New_Client_List = [{Client_Name, Client_Listener_PID} | Client_List],
 			Server_Input_Listener_PID ! {update_client_list, New_Client_List},
 			handle_server_listening(Server_Input_Listener_PID, Server_Name, New_Client_List);
 
+		% When a client disconnects
         {bye, Client_Name, Client_Listener_PID} ->
 			Temp_Message = io_lib:format("DISCONNECTED...~n", []),
 			io:format("~s: DISCONNECTED...~n", [Client_Name]),
 			broadcast_message(Client_Name, Temp_Message, Client_List),
+
+			% Update the list of clients
 			New_Client_List = lists:delete({Client_Name, Client_Listener_PID}, Client_List),
 			Server_Input_Listener_PID ! {update_client_list, New_Client_List},
 			handle_server_listening(Server_Input_Listener_PID, Server_Name, New_Client_List);
-			% erlang:halt(); % Force exit the erlang shell
 
 		% Output message from the client
         {client_message, Client_Name, Client_Input} ->
@@ -61,10 +69,12 @@ handle_server_listening(Server_Input_Listener_PID, Server_Name, Client_List) ->
 % ─────────────────────────────────────────────────────────────────────────────────────
 % Function to broadcast message to all clients except the sender
 broadcast_message(Client_Name, Message, Client_List) ->
+	% Loop through the list for clients
     lists:foreach(
         fun({Other_Client_Name, Other_Client_PID}) ->
             if 
                 Other_Client_Name =/= Client_Name ->
+					% Disconnect 
                     if Message =:= bye ->
                         Other_Client_PID ! bye;
                     true ->
@@ -80,26 +90,41 @@ broadcast_message(Client_Name, Message, Client_List) ->
 % ─────────────────────────────────────────────────────────────────────────────────────
 % Prompt for server inputs
 handle_server_input(Server_Name, Client_List) ->
-    % Set up to receive updated Client_List from server_listener
-    receive
-        {update_client_list, Updated_Client_List} ->
-            handle_server_input(Server_Name, Updated_Client_List)
-    after 0 ->
-        % Ask for user input
-        Server_Input = io:get_line("You: "),
+    % Spawn a separate process to get inputs from the user (server)
+    Input_PID = spawn(?MODULE_NAME, handle_server_input_prompt, [self()]),
 
-        case string:lowercase(Server_Input) of
-            % Exit if "bye"
-            "bye\n" ->
-                io:format("Server has disconnected!~n"),
-                broadcast_message(Server_Name, bye, Client_List),
-                erlang:halt();  % Stop the server and disconnect all clients
-            _ ->
-                % Send the message to the clients
-                broadcast_message(Server_Name, Server_Input, Client_List),
-                handle_server_input(Server_Name, Client_List)
-        end
+    % Start looping to monitor both user input and client list updates
+    handle_server_input_listening(Server_Name, Client_List, Input_PID).
+
+% ─────────────────────────────────────────────────────────────────────────────────────
+% Main loop that handles both input and updates
+handle_server_input_listening(Server_Name, Client_List, Input_PID) ->
+    receive
+        % When the client list is updated
+        {update_client_list, Updated_Client_List} ->
+            handle_server_input_listening(Server_Name, Updated_Client_List, Input_PID);
+
+        % When receiving inputs from handle_server_input_prompt process
+        {server_input, Server_Input} ->
+            case string:lowercase(Server_Input) of
+				% Terminate the process and force exit all users/clients' terminals
+                "bye\n" ->
+                    io:format("Server has disconnected!~n"),
+                    broadcast_message(Server_Name, bye, Client_List),
+                    erlang:halt();   % Force exit the erlang shell
+                _ ->
+                    % Broadcast the message to all clients
+                    broadcast_message(Server_Name, Server_Input, Client_List),
+                    handle_server_input_listening(Server_Name, Client_List, Input_PID)
+            end
     end.
+
+% ─────────────────────────────────────────────────────────────────────────────────────
+% Separate process to handle continuously get inputs from the user
+handle_server_input_prompt(Parent_PID) ->
+    Server_Input = io:get_line("You: "),
+    Parent_PID ! {server_input, Server_Input},
+    handle_server_input_prompt(Parent_PID).
 
 
 % ═════════════════════════════════════════════════════════════════════════════════════
