@@ -1,18 +1,20 @@
 % DESCRIPTION: 
-%       This is a simple Erlang program that allows two users to communicate with each 
-% other (just like a chat application). One user will start the communication process 
-% by invoking the init_chat function. The other user connects to the first user by
-% invoking the init_chat2 function while specifying the first user's name (passing it as a parameter).
-% The communication process terminates when one of the users sends the string 'bye'.
+%       This is a simple Erlang program that allows three or more users to communicate 
+% with each other, similar to a chat application, through a server. One user (the server) 
+% initiates the communication process by invoking the init_chat function. Other users 
+% can connect to the server by invoking the init_chat2 function and specifying the 
+% server's name as a parameter. The communication process terminates when the server sends
+% the string 'bye'. Additionally, any connected user can disconnect by sending the string
+% 'bye' as well.
 % AUTHOR:   Keith Ginoel S. Gabinete
 % CREATED:  October 18, 2024
 % ═════════════════════════════════════════════════════════════════════════════════════
 
--module(gabinete).
+-module(gabinete_bonus).
 -compile([nowarn_export_all,export_all]).
 
 % GLOBAL VARIABLE
--define(MODULE_NAME, gabinete).
+-define(MODULE_NAME, gabinete_bonus).
 
 % ═════════════════════════════════════════════════════════════════════════════════════
 % Initialize the chat/communcation process (setting up the server and server prompt)
