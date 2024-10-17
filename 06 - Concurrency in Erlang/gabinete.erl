@@ -8,11 +8,11 @@
 % CREATED:  October 16, 2024
 % ═════════════════════════════════════════════════════════════════════════════════════
 
--module(gabinete1gabinete2).
+-module(gabinete).
 -compile([nowarn_export_all,export_all]).
 
 % GLOBAL VARIABLE
--define(MODULE_NAME, gabinete1gabinete2).
+-define(MODULE_NAME, gabinete).
 
 % ═════════════════════════════════════════════════════════════════════════════════════
 % Initialize the chat/communcation process (setting up the server and server prompt)
