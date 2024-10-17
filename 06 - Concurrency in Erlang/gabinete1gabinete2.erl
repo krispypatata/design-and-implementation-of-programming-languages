@@ -8,8 +8,11 @@
 % CREATED:  October 16, 2024
 % ═════════════════════════════════════════════════════════════════════════════════════
 
--module(chat).
+-module(gabinete1gabinete2).
 -compile([nowarn_export_all,export_all]).
+
+% GLOBAL VARIABLE
+-define(MODULE_NAME, gabinete1gabinete2).
 
 % ═════════════════════════════════════════════════════════════════════════════════════
 % Initialize the chat/communcation process (setting up the server and server prompt)
@@ -25,7 +28,7 @@ init_chat() ->
     Server_Name = string:trim(io:get_line("Enter Your Name: ")),
 
 	% Wait for another user to connect
-	register(chat_connection, spawn(chat, wait_for_connection, [Server_Name])).
+	register(chat_connection, spawn(?MODULE_NAME, wait_for_connection, [Server_Name])).
     
 % ─────────────────────────────────────────────────────────────────────────────────────
 % A function for establishing connection with another user and also for spawning a 
@@ -36,10 +39,10 @@ wait_for_connection(Server_Name) ->
 			io:format("────────────────────────────────~n"), 
 			io:format("Connection has been established.~n"),
 			io:format("────────────────────────────────~n"),
-			register(server_listener, spawn(chat, handle_server_listening, [Server_Name])),
+			register(server_listener, spawn(?MODULE_NAME, handle_server_listening, [Server_Name])),
 			handle_server_input(Server_Name, Client_Listener_PID)
 			% alternative: spawn handle_server_input instead of calling it
-			% spawn(chat, handle_server_input, [Server_Name, Client_Listener_PID]),
+			% spawn(?MODULE_NAME, handle_server_input, [Server_Name, Client_Listener_PID]),
 	end.
 
 % ─────────────────────────────────────────────────────────────────────────────────────
@@ -92,7 +95,7 @@ init_chat2(Chat_Node) ->
 					exit(normal);
 				_ -> 
 					Client_Name = string:trim(io:get_line("Enter Your Name: ")),
-					Client_Listener_PID = spawn(chat, handle_client_listening, []),
+					Client_Listener_PID = spawn(?MODULE_NAME, handle_client_listening, []),
 					{chat_connection, Chat_Node} ! {connection_established, Client_Listener_PID},
 					io:format("────────────────────────────────~n"), 
 					io:format("Connection has been established.~n"),
