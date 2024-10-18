@@ -88,12 +88,11 @@ broadcast_message(Client_Name, Message, Client_List) ->
         Client_List
     ).
 
-
 % ─────────────────────────────────────────────────────────────────────────────────────
 % Prompt for server inputs
 handle_server_input(Server_Name, Client_List) ->
     % Spawn a separate process to get inputs from the user (server)
-    Input_PID = spawn(?MODULE_NAME, handle_server_input_prompt, [self()]),
+    Input_PID = spawn(?MODULE_NAME, handle_server_input_prompt, [Server_Name, self()]),
 
     % Start looping to monitor both user input and client list updates
     handle_server_input_listening(Server_Name, Client_List, Input_PID).
@@ -123,10 +122,12 @@ handle_server_input_listening(Server_Name, Client_List, Input_PID) ->
 
 % ─────────────────────────────────────────────────────────────────────────────────────
 % Separate process to handle continuously get inputs from the user
-handle_server_input_prompt(Parent_PID) ->
-    Server_Input = io:get_line("You: "),
+handle_server_input_prompt(Server_Name, Parent_PID) ->
+	% Ask for user input
+	Chat_Tag = io_lib:format("~s: ", [Server_Name]),
+    Server_Input = io:get_line(Chat_Tag),
     Parent_PID ! {server_input, Server_Input},
-    handle_server_input_prompt(Parent_PID).
+    handle_server_input_prompt(Server_Name, Parent_PID).
 
 
 % ═════════════════════════════════════════════════════════════════════════════════════
@@ -180,7 +181,8 @@ handle_client_listening() ->
 % Prompt for client inputs
 handle_client_input(Client_Name, Client_Listener_PID, Chat_Node) ->
 	% Ask for user input
-    Client_Input = io:get_line("You: "),
+	Chat_Tag = io_lib:format("~s: ", [Client_Name]),
+    Client_Input = io:get_line(Chat_Tag),
 
     case string:lowercase(Client_Input) of
 		% Exit if "bye"

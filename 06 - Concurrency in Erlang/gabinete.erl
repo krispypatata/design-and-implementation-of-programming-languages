@@ -63,7 +63,8 @@ handle_server_listening(Server_Name) ->
 % Prompt for server inputs
 handle_server_input(Server_Name, Client_Listener_PID) ->
 	% Ask for user input
-	Server_Input = io:get_line("You: "),
+	Chat_Tag = io_lib:format("~s: ", [Server_Name]),
+	Server_Input = io:get_line(Chat_Tag),
 
 	case string:lowercase(Server_Input) of
 		% Exit if "bye"
@@ -129,7 +130,8 @@ handle_client_listening() ->
 % Prompt for client inputs
 handle_client_input(Client_Name, Chat_Node) ->
 	% Ask for user input
-    Client_Input = io:get_line("You: "),
+	Chat_Tag = io_lib:format("~s: ", [Client_Name]),
+    Client_Input = io:get_line(Chat_Tag),
 
     case string:lowercase(Client_Input) of
 		% Exit if "bye"
