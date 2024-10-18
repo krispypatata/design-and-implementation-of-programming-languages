@@ -41,9 +41,8 @@ handle_server_listening(Server_Input_Listener_PID, Server_Name, Client_List) ->
     receive
 		% When a client connects to the server
 		{connection_established, Client_Listener_PID, Client_Name} ->
-			Temp_Message = io_lib:format("CONNECTED...~n", []),
-			io:format("~s: CONNECTED...~n", [Client_Name]),
-			broadcast_message(Client_Name, Temp_Message, Client_List),
+			io:format("~s has joined the chat.~n", [Client_Name]),
+			broadcast_message(Client_Name, user_connected, Client_List),
 
 			% Update the list of clients
 			New_Client_List = [{Client_Name, Client_Listener_PID} | Client_List],
@@ -52,9 +51,8 @@ handle_server_listening(Server_Input_Listener_PID, Server_Name, Client_List) ->
 
 		% When a client disconnects
         {bye, Client_Name, Client_Listener_PID} ->
-			Temp_Message = io_lib:format("DISCONNECTED...~n", []),
-			io:format("~s: DISCONNECTED...~n", [Client_Name]),
-			broadcast_message(Client_Name, Temp_Message, Client_List),
+			io:format("~s has left the chat.~n", [Client_Name]),
+			broadcast_message(Client_Name, user_disconnected, Client_List),
 
 			% Update the list of clients
 			New_Client_List = lists:delete({Client_Name, Client_Listener_PID}, Client_List),
@@ -79,6 +77,10 @@ broadcast_message(Client_Name, Message, Client_List) ->
 					% Disconnect 
                     if Message =:= bye ->
                         Other_Client_PID ! bye;
+					Message =:= user_connected ->
+						Other_Client_PID ! {user_connected, Client_Name};
+					Message =:= user_disconnected ->
+						Other_Client_PID ! {user_disconnected, Client_Name};
                     true ->
                         Other_Client_PID ! {server_message, Client_Name, Message}
                     end;
@@ -110,7 +112,7 @@ handle_server_input_listening(Server_Name, Client_List, Input_PID) ->
             case string:lowercase(Server_Input) of
 				% Terminate the process and force exit all users/clients' terminals
                 "bye\n" ->
-                    io:format("Server has disconnected!~n"),
+                    io:format("You ended the chat session.~n"),
                     broadcast_message(Server_Name, bye, Client_List),
                     erlang:halt();   % Force exit the erlang shell
                 _ ->
@@ -168,12 +170,22 @@ init_chat2(Chat_Node) ->
 handle_client_listening() -> 
 	receive
 		bye ->
-            io:format("Server has disconnected!~n"),
+            io:format("Server has ended the chat session.~n"),
 			erlang:halt(); % Force exit the erlang shell
 
 		% Output message from the server 
 		{server_message, Server_Name, Server_Input} ->
 			io:format("~s: ~s", [Server_Name, Server_Input]),
+			handle_client_listening();
+
+		% Output a message when a user connects
+		{user_connected, User_Name} ->
+			io:format("~s has joined the chat.~n", [User_Name]),
+			handle_client_listening();
+
+		% Output a message when a user disconnects
+		{user_disconnected, User_Name} ->
+			io:format("~s has left the chat.~n", [User_Name]),
 			handle_client_listening()
 	end.
 
