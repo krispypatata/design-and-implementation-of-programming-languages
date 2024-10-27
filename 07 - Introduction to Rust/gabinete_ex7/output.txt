@@ -1,0 +1,225 @@
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+There are no events available!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+There are no customers yet!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Event ID: Event Title: Artist: Date and Time: Ticket Price: Stock: 
+Successfully added event!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Event ID: 
+Entered ID already exists!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Event ID: Event Title: Artist: Date and Time: Ticket Price: Stock: 
+Successfully added event!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Stock: 
+-------- EVENTS AVAILABLE --------
+	[1] Super Show 9 (Super Junior) - 4500
+	[2] Be the Sun (Seventeen) - 5700
+Enter Event ID to buy: Event ID not in the list!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Stock: 
+-------- EVENTS AVAILABLE --------
+	[1] Super Show 9 (Super Junior) - 4500
+	[2] Be the Sun (Seventeen) - 5700
+Enter Event ID to buy: Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Stock: 
+-------- EVENTS AVAILABLE --------
+	[1] Super Show 9 (Super Junior) - 4500
+	[2] Be the Sun (Seventeen) - 5700
+Enter Event ID to buy: Successfully bought ticket 1_Super Show 9_August 6, 2022 5PM!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Stock: 
+-------- EVENTS AVAILABLE --------
+	[1] Super Show 9 (Super Junior) - 4500
+	[2] Be the Sun (Seventeen) - 5700
+Enter Event ID to buy: Event ticket is out of stock!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Stock: 
+-------- EVENTS AVAILABLE --------
+	[1] Super Show 9 (Super Junior) - 4500
+	[2] Be the Sun (Seventeen) - 5700
+Enter Event ID to buy: Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Event ID: 1
+Event Title: Super Show 9
+Artist: Super Junior
+Date and Time: August 6, 2022 5PM
+Ticket Price: 4500
+Stock: 0
+
+Event ID: 2
+Event Title: Be the Sun
+Artist: Seventeen
+Date and Time: October 9, 2022 7PM
+Ticket Price: 5700
+Stock: 1
+
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Customer Name: Jane Doe
+Tickets Bought:
+	- 2_Be the Sun_October 9, 2022 7PM
+	- 1_Super Show 9_August 6, 2022 5PM
+Total Cost: 10200
+
+Customer Name: John Smith
+Tickets Bought:
+	- 2_Be the Sun_October 9, 2022 7PM
+Total Cost: 5700
+
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Enter Event ID: Enter new date and time: Enter new price: Enter new stock: Event Details Successfully Edited!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Enter Event ID: Successfully deleted event detail!
+
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Goodbye!
