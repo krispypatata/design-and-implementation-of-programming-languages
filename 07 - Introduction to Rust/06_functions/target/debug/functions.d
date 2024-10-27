@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/06_functions/target/debug/functions: /home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/06_functions/src/main.rs

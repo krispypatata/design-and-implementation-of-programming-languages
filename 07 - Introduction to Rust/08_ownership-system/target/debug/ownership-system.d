@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/08_ownership-system/target/debug/ownership-system: /home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/08_ownership-system/src/main.rs

@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/02_data-types/target/debug/data-types: /home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/02_data-types/src/main.rs

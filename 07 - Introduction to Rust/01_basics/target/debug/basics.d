@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/01_basics/target/debug/basics: /home/shio/Downloads/design-and-implementation-of-programming-languages/07\ -\ Introduction\ to\ Rust/01_basics/src/main.rs
