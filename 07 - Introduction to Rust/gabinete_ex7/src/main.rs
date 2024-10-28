@@ -365,6 +365,7 @@ fn delete_event(events: &mut Vec<ArtistEvent>) {
 
     // Delete the event from the collection
     events.remove(event_index);
+
     println!("Successfully deleted event detail!");
 }
 
@@ -400,6 +401,7 @@ fn view_all_customers(customers: &Vec<Customer>) {
         return;
     }
 
+    // Traverse through the customers vector and display its contents neatly
     for customer in customers {
         println!("Customer Name: {}", customer.name);
         println!("Tickets Bought:");
@@ -414,10 +416,12 @@ fn view_all_customers(customers: &Vec<Customer>) {
 
 // ═════════════════════════════════════════════════════════════════════════════════════
 fn main() {
+    // Initialization of some necessary varioables for the program
     let mut events: Vec<ArtistEvent> = Vec::new();
     let mut customers: Vec<Customer> = Vec::new();
     let mut choice = 0;
 
+    // Loop the program until the user chooses to terminate it
     while choice != 7 {
         display_menu();
         choice = ask_choice();
