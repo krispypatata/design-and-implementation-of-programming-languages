@@ -159,7 +159,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
     // ---------------------------------------------------------------------------------
 
     // Ask for the name of the customer
-    let customer_name = get_user_input("Stock: ".to_string());
+    let customer_name = get_user_input("Enter customer name: ".to_string());
 
     // --------------------------------------------------------------------------------
     // Show the events available
@@ -168,6 +168,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
     for event in &events[..] {
         println!("\t[{}] {} ({}) - {}", event.event_id, event.event_title, event.artist, event.ticket_price);
     }
+    println!();
 
     // Ask for the id of the event the customer wants to buy
     let event_id = get_user_input("Enter Event ID to buy: ".to_string());
@@ -176,7 +177,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
     // Validate Event ID
     let event_id = event_id.parse::<u32>();
     if event_id.is_err() {
-        println!("Invalid Event ID: Must be a number!");
+        println!("\nInvalid Event ID: Must be a number!");
         return;
     }
 
@@ -196,7 +197,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
     }
 
     if !is_existing {
-        println!("Event ID not in the list!");
+        println!("\nEvent ID not in the list!");
         return;
     }
     // --------------------------------------------------------------------------------
@@ -206,7 +207,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
 
     // Check if there's still stock of event tickets
     if event_to_buy.stock <= 0 {
-        println!("Event ticket is out of stock!");
+        println!("\nEvent ticket is out of stock!");
         return;
     }
 
@@ -245,7 +246,7 @@ fn buy_ticket(customers: &mut Vec<Customer>, events: &mut Vec<ArtistEvent>) {
     let bought_ticket = format!("{}_{}_{}", event_to_buy.event_id, event_to_buy.event_title, event_to_buy.datetime);
     customer.tickets_bought.push(bought_ticket[..].to_string());
 
-    println!("Successfully bought ticket {}!", bought_ticket);
+    println!("\nSuccessfully bought ticket {}!", bought_ticket);
 }
 
 
@@ -266,7 +267,7 @@ fn edit_event(events: &mut Vec<ArtistEvent>) {
     // Validate Event ID
     let event_id = event_id.parse::<u32>();
     if event_id.is_err() {
-        println!("Invalid Event ID: Must be a number!");
+        println!("\nInvalid Event ID: Must be a number!");
         return;
     }
 
@@ -286,7 +287,7 @@ fn edit_event(events: &mut Vec<ArtistEvent>) {
     }
 
     if !is_existing {
-        println!("Event ID not found!");
+        println!("\nEvent ID not found!");
         return;
     }
     // ---------------------------------------------------------------------------------
@@ -298,7 +299,7 @@ fn edit_event(events: &mut Vec<ArtistEvent>) {
     // Validate Ticket Price
     let new_ticket_price = new_ticket_price.parse::<f64>();
     if new_ticket_price.is_err() {
-        println!("Invalid Ticket Price: Must be a decimal number!");
+        println!("\nInvalid Ticket Price: Must be a decimal number!");
         return;
     }
 
@@ -307,7 +308,7 @@ fn edit_event(events: &mut Vec<ArtistEvent>) {
     // Validate Stock
     let new_stock = new_stock.parse::<u32>();
     if new_stock.is_err() {
-        println!("Invalid Stock: Must be a number!");
+        println!("\nInvalid Stock: Must be a number!");
         return;
     }
     // --------------------------------------------------------------------------------
@@ -320,7 +321,7 @@ fn edit_event(events: &mut Vec<ArtistEvent>) {
     event_to_edit.ticket_price = new_ticket_price.unwrap();
     event_to_edit.stock = new_stock.unwrap();
 
-    println!("Event Details Successfully Edited!");
+    println!("\nEvent Details Successfully Edited!");
 }
 
 
@@ -339,7 +340,7 @@ fn delete_event(events: &mut Vec<ArtistEvent>) {
     // Validate Event ID
     let event_id = event_id.parse::<u32>();
     if event_id.is_err() {
-        println!("Invalid Event ID: Must be a number!");
+        println!("\nInvalid Event ID: Must be a number!");
         return;
     }
 
@@ -359,14 +360,14 @@ fn delete_event(events: &mut Vec<ArtistEvent>) {
     }
 
     if !is_existing {
-        println!("Event ID not found!");
+        println!("\nEvent ID not found!");
         return;
     }
 
     // Delete the event from the collection
     events.remove(event_index);
 
-    println!("Successfully deleted event detail!");
+    println!("\nSuccessfully deleted event detail!");
 }
 
 
@@ -380,14 +381,18 @@ fn view_all_events(events: &Vec<ArtistEvent>) {
     }
 
     // Iterate through the collection
-    for event in events {
+    for (i, event) in events.iter().enumerate() {
         println!("Event ID: {}", event.event_id);
         println!("Event Title: {}", event.event_title);
         println!("Artist: {}", event.artist);
         println!("Date and Time: {}", event.datetime);
         println!("Ticket Price: {}", event.ticket_price);
         println!("Stock: {}", event.stock);
-        println!();
+    
+        // Print a new line after each iteration (except for the last one)
+        if i < events.len() - 1 {
+            println!();
+        }
     }
 }
 
@@ -401,15 +406,19 @@ fn view_all_customers(customers: &Vec<Customer>) {
         return;
     }
 
-    // Traverse through the customers vector and display its contents neatly
-    for customer in customers {
+    // Iterate through the collection
+    for (i, customer) in customers.iter().enumerate() {
         println!("Customer Name: {}", customer.name);
         println!("Tickets Bought:");
         for ticket in &customer.tickets_bought[..] {
             println!("\t- {}", ticket);
         }
         println!("Total Cost: {}", customer.total_cost);
-        println!();
+    
+        // Print a new line after each iteration (except for the last one)
+        if i < customers.len() - 1 {
+            println!();
+        }
     }
 }
 
