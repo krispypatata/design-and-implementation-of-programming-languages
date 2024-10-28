@@ -424,6 +424,7 @@ fn view_all_customers(customers: &Vec<Customer>) {
 
 
 // ═════════════════════════════════════════════════════════════════════════════════════
+// MAIN PROGRAM
 fn main() {
     // Initialization of some necessary varioables for the program
     let mut events: Vec<ArtistEvent> = Vec::new();

@@ -71,11 +71,13 @@ Successfully added event!
 [7] Exit
 
 Enter choice: 
-Stock: 
+Enter customer name: 
 -------- EVENTS AVAILABLE --------
 	[1] Super Show 9 (Super Junior) - 4500
 	[2] Be the Sun (Seventeen) - 5700
-Enter Event ID to buy: Event ID not in the list!
+
+Enter Event ID to buy: 
+Event ID not in the list!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -87,11 +89,13 @@ Enter Event ID to buy: Event ID not in the list!
 [7] Exit
 
 Enter choice: 
-Stock: 
+Enter customer name: 
 -------- EVENTS AVAILABLE --------
 	[1] Super Show 9 (Super Junior) - 4500
 	[2] Be the Sun (Seventeen) - 5700
-Enter Event ID to buy: Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
+
+Enter Event ID to buy: 
+Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -103,11 +107,13 @@ Enter Event ID to buy: Successfully bought ticket 2_Be the Sun_October 9, 2022 7
 [7] Exit
 
 Enter choice: 
-Stock: 
+Enter customer name: 
 -------- EVENTS AVAILABLE --------
 	[1] Super Show 9 (Super Junior) - 4500
 	[2] Be the Sun (Seventeen) - 5700
-Enter Event ID to buy: Successfully bought ticket 1_Super Show 9_August 6, 2022 5PM!
+
+Enter Event ID to buy: 
+Successfully bought ticket 1_Super Show 9_August 6, 2022 5PM!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -119,11 +125,13 @@ Enter Event ID to buy: Successfully bought ticket 1_Super Show 9_August 6, 2022 
 [7] Exit
 
 Enter choice: 
-Stock: 
+Enter customer name: 
 -------- EVENTS AVAILABLE --------
 	[1] Super Show 9 (Super Junior) - 4500
 	[2] Be the Sun (Seventeen) - 5700
-Enter Event ID to buy: Event ticket is out of stock!
+
+Enter Event ID to buy: 
+Event ticket is out of stock!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -135,11 +143,13 @@ Enter Event ID to buy: Event ticket is out of stock!
 [7] Exit
 
 Enter choice: 
-Stock: 
+Enter customer name: 
 -------- EVENTS AVAILABLE --------
 	[1] Super Show 9 (Super Junior) - 4500
 	[2] Be the Sun (Seventeen) - 5700
-Enter Event ID to buy: Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
+
+Enter Event ID to buy: 
+Successfully bought ticket 2_Be the Sun_October 9, 2022 7PM!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -165,7 +175,6 @@ Date and Time: October 9, 2022 7PM
 Ticket Price: 5700
 Stock: 1
 
-
 ==================== MENU ====================
 [1] Add Event Details
 [2] Buy Ticket
@@ -187,6 +196,18 @@ Tickets Bought:
 	- 2_Be the Sun_October 9, 2022 7PM
 Total Cost: 5700
 
+==================== MENU ====================
+[1] Add Event Details
+[2] Buy Ticket
+[3] Edit Event Details
+[4] Delete Event
+[5] View All Events
+[6] View All Customers
+[7] Exit
+
+Enter choice: 
+Enter Event ID: Enter new date and time: Enter new price: Enter new stock: 
+Event Details Successfully Edited!
 
 ==================== MENU ====================
 [1] Add Event Details
@@ -198,19 +219,8 @@ Total Cost: 5700
 [7] Exit
 
 Enter choice: 
-Enter Event ID: Enter new date and time: Enter new price: Enter new stock: Event Details Successfully Edited!
-
-==================== MENU ====================
-[1] Add Event Details
-[2] Buy Ticket
-[3] Edit Event Details
-[4] Delete Event
-[5] View All Events
-[6] View All Customers
-[7] Exit
-
-Enter choice: 
-Enter Event ID: Successfully deleted event detail!
+Enter Event ID: 
+Successfully deleted event detail!
 
 ==================== MENU ====================
 [1] Add Event Details
