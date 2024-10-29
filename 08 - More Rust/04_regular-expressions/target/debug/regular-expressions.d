@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/08\ -\ More\ Rust/04_regular-expressions/target/debug/regular-expressions: /home/shio/Downloads/design-and-implementation-of-programming-languages/08\ -\ More\ Rust/04_regular-expressions/src/main.rs

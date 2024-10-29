@@ -1,0 +1,1 @@
+/home/shio/Downloads/design-and-implementation-of-programming-languages/08\ -\ More\ Rust/03_file-input-output/target/debug/file-input-output: /home/shio/Downloads/design-and-implementation-of-programming-languages/08\ -\ More\ Rust/03_file-input-output/src/main.rs
