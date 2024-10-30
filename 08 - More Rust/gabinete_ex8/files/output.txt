@@ -1,0 +1,10 @@
+Count:9
+Detected identifier: var1
+Detected identifier: a
+Detected identifier: b
+Detected identifier: c
+Detected identifier: d
+Detected identifier: you
+Detected identifier: var2
+Detected identifier: @NO PROBLEMO
+Detected identifier: okay
