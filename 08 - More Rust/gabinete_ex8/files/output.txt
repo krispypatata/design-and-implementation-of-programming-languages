@@ -1,10 +1,14 @@
-Count:9
-Detected identifier: var1
-Detected identifier: a
-Detected identifier: b
-Detected identifier: c
-Detected identifier: d
-Detected identifier: you
-Detected identifier: var2
+Count:13
+Detected identifier: isLessThan100
 Detected identifier: @NO PROBLEMO
-Detected identifier: okay
+Detected identifier: n
+Detected identifier: multiple
+Detected identifier: divisible
+Detected identifier: modulo
+Detected identifier: dividend
+Detected identifier: divisor
+Detected identifier: quotient
+Detected identifier: remainder
+Detected identifier: product
+Detected identifier: result
+Detected identifier: isZero
