@@ -22,7 +22,7 @@ fn display_menu() {
     println!("[2] Show all keywords");
     println!("[3] Show all strings");
     println!("[4] Show all non-keyword identifiers");
-    println!("[0] Exit");
+    println!("[5] Exit");
     println!();
 }
 
@@ -310,7 +310,7 @@ fn main() {
     let mut output_contents = String::new();
     let mut input_contents = String::new();
     let input_lines;
-    let mut choice:u8 = 8;
+    let mut choice:u8 = 0;
 
     // Read contents from a file
     read_from_file("files/input.arnoldc", &mut input_contents);
@@ -319,10 +319,10 @@ fn main() {
     input_lines = extract_lines(&input_contents);
 
     // Loop the program until the user chooses to terminate it
-    while choice != 0 {
+    while choice != 5 {
     // Ask for user input
         display_menu();
-        choice = ask_choice(0, 4);
+        choice = ask_choice(1, 5);
 
         // Perform appropriate action based on user input
         if choice == 1 {
@@ -335,7 +335,7 @@ fn main() {
             output_contents = get_all_non_keyword_identifiers(&input_lines);
         } 
         
-        if choice == 0 {
+        if choice == 5 {
             print!("Goodbye!");
         } else {
             // Export the results into a file
